@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nayots.LaptopShop.Host", "Nayots.LaptopShop.Host\Nayots.LaptopShop.Host.csproj", "{592A3365-327A-4594-A711-9506F60BDA92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nayots.LaptopShop.Models", "Nayots.LaptopShop.Models\Nayots.LaptopShop.Models.csproj", "{B72778A3-FEE8-4E7A-96B2-3AFD7EC83FEE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nayots.LaptopShop.Contracts", "Nayots.LaptopShop.Contracts\Nayots.LaptopShop.Contracts.csproj", "{6D4C0B85-0517-4015-AD10-80B33E674A8C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nayots.LaptopShop.BL", "Nayots.LaptopShop.BL\Nayots.LaptopShop.BL.csproj", "{F2111A37-F653-4ACF-A678-145A9187EEDB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{87BA77E0-9841-4151-8E82-610A4E94020E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nayots.LaptopShop.Common", "Nayots.LaptopShop.Common\Nayots.LaptopShop.Common.csproj", "{9CF96456-B725-4520-B636-DBA6115EC24E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nayots.LaptopShop.Data", "Nayots.LaptopShop.Data\Nayots.LaptopShop.Data.csproj", "{94FBEC7B-A163-43F8-B5F4-2A9875EEAC3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,26 +23,26 @@ Global
 		{592A3365-327A-4594-A711-9506F60BDA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{592A3365-327A-4594-A711-9506F60BDA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{592A3365-327A-4594-A711-9506F60BDA92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B72778A3-FEE8-4E7A-96B2-3AFD7EC83FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B72778A3-FEE8-4E7A-96B2-3AFD7EC83FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B72778A3-FEE8-4E7A-96B2-3AFD7EC83FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B72778A3-FEE8-4E7A-96B2-3AFD7EC83FEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D4C0B85-0517-4015-AD10-80B33E674A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D4C0B85-0517-4015-AD10-80B33E674A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D4C0B85-0517-4015-AD10-80B33E674A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D4C0B85-0517-4015-AD10-80B33E674A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F2111A37-F653-4ACF-A678-145A9187EEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2111A37-F653-4ACF-A678-145A9187EEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2111A37-F653-4ACF-A678-145A9187EEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2111A37-F653-4ACF-A678-145A9187EEDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF96456-B725-4520-B636-DBA6115EC24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF96456-B725-4520-B636-DBA6115EC24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF96456-B725-4520-B636-DBA6115EC24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF96456-B725-4520-B636-DBA6115EC24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FBEC7B-A163-43F8-B5F4-2A9875EEAC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FBEC7B-A163-43F8-B5F4-2A9875EEAC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FBEC7B-A163-43F8-B5F4-2A9875EEAC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FBEC7B-A163-43F8-B5F4-2A9875EEAC3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B72778A3-FEE8-4E7A-96B2-3AFD7EC83FEE} = {87BA77E0-9841-4151-8E82-610A4E94020E}
-		{6D4C0B85-0517-4015-AD10-80B33E674A8C} = {87BA77E0-9841-4151-8E82-610A4E94020E}
 		{F2111A37-F653-4ACF-A678-145A9187EEDB} = {87BA77E0-9841-4151-8E82-610A4E94020E}
+		{9CF96456-B725-4520-B636-DBA6115EC24E} = {87BA77E0-9841-4151-8E82-610A4E94020E}
+		{94FBEC7B-A163-43F8-B5F4-2A9875EEAC3D} = {87BA77E0-9841-4151-8E82-610A4E94020E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C60B4C6-1E09-42C5-B958-19205171B619}

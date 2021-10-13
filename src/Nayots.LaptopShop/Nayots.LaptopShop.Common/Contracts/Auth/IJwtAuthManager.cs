@@ -1,4 +1,4 @@
-﻿namespace Nayots.LaptopShop.Contracts.Auth
+﻿namespace Nayots.LaptopShop.Common.Contracts.Auth
 {
     public interface IJwtAuthManager
     {

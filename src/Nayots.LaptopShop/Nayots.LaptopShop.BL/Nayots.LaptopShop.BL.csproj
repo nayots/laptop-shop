@@ -10,7 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nayots.LaptopShop.Contracts\Nayots.LaptopShop.Contracts.csproj" />
+    <ProjectReference Include="..\Nayots.LaptopShop.Common\Nayots.LaptopShop.Common.csproj" />
+    <ProjectReference Include="..\Nayots.LaptopShop.Data\Nayots.LaptopShop.Data.csproj" />
   </ItemGroup>
 
 </Project>

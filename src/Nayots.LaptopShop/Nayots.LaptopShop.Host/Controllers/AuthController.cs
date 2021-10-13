@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Nayots.LaptopShop.Contracts.Auth;
-using Nayots.LaptopShop.Models.Auth;
+using Nayots.LaptopShop.Common.Contracts.Auth;
+using Nayots.LaptopShop.Common.Models.Auth;
 
 namespace Nayots.LaptopShop.Host.Controllers
 {

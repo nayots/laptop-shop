@@ -4,12 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Nayots.LaptopShop.BL.Services.Auth;
-using Nayots.LaptopShop.Contracts.Auth;
+using Nayots.LaptopShop.BL.Services.Products;
+using Nayots.LaptopShop.Common.Contracts.Auth;
+using Nayots.LaptopShop.Common.Contracts.Products;
+using Nayots.LaptopShop.Data.Products;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Nayots.LaptopShop.Host.Extensions
 {
@@ -71,6 +71,13 @@ namespace Nayots.LaptopShop.Host.Extensions
             });
 
             return serviceCollection;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddTransient<IProductsService, ProductsService>()
+                .AddSingleton<IProductsRepository, ProductsRepository>();
         }
     }
 }

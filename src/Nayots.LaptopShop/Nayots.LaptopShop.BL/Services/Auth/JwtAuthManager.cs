@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Nayots.LaptopShop.Contracts.Auth;
+using Nayots.LaptopShop.Common.Contracts.Auth;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

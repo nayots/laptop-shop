@@ -19,6 +19,7 @@ namespace Nayots.LaptopShop.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddJWTAuth(Configuration);
+            services.AddServices();
             services.AddControllers();
             services.AddSwagger();
         }
