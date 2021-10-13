@@ -6,7 +6,10 @@ using Microsoft.OpenApi.Models;
 using Nayots.LaptopShop.BL.Services.Auth;
 using Nayots.LaptopShop.BL.Services.Products;
 using Nayots.LaptopShop.Common.Contracts.Auth;
+using Nayots.LaptopShop.Common.Contracts.Data;
 using Nayots.LaptopShop.Common.Contracts.Products;
+using Nayots.LaptopShop.Common.Models.Config;
+using Nayots.LaptopShop.Data.BootStrap;
 using Nayots.LaptopShop.Data.Products;
 using System;
 using System.Text;
@@ -78,6 +81,14 @@ namespace Nayots.LaptopShop.Host.Extensions
             return serviceCollection
                 .AddTransient<IProductsService, ProductsService>()
                 .AddSingleton<IProductsRepository, ProductsRepository>();
+        }
+
+        public static IServiceCollection AddDB(this IServiceCollection serviceCollection, IConfiguration configuration)
+        {
+            serviceCollection.Configure<DbConfig>(configuration.GetSection(nameof(DbConfig)));
+            serviceCollection.AddSingleton<IDataBoostrap, DataBootstrap>();
+
+            return serviceCollection;
         }
     }
 }

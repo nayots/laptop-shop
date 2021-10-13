@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nayots.LaptopShop.Common.Contracts.Data;
 using Nayots.LaptopShop.Host.Extensions;
+using System;
 
 namespace Nayots.LaptopShop.Host
 {
@@ -22,9 +24,10 @@ namespace Nayots.LaptopShop.Host
             services.AddServices();
             services.AddControllers();
             services.AddSwagger();
+            services.AddDB(Configuration);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +47,9 @@ namespace Nayots.LaptopShop.Host
             {
                 endpoints.MapControllers();
             });
+
+
+            serviceProvider.GetService<IDataBoostrap>().Setup();
         }
     }
 }

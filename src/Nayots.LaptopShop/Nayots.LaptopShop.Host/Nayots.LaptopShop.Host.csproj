@@ -13,4 +13,10 @@
     <ProjectReference Include="..\Nayots.LaptopShop.BL\Nayots.LaptopShop.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="BootstrapScript.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
