@@ -11,6 +11,8 @@ namespace Nayots.LaptopShop.Host
 {
     public class Startup
     {
+        private const string _corsPolicyName = "AllowAll";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,11 +22,14 @@ namespace Nayots.LaptopShop.Host
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddJWTAuth(Configuration);
             services.AddServices();
             services.AddControllers();
+            services.AddHttpContextAccessor();
             services.AddSwagger();
             services.AddDB(Configuration);
+            services.AddValidators();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
@@ -32,12 +37,12 @@ namespace Nayots.LaptopShop.Host
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nayots.LaptopShop.Host v1"));
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nayots.LaptopShop.Host v1"));
 
             app.UseHttpsRedirection();
-
+            app.UseCors();
             app.UseRouting();
 
             app.UseAuthentication();
@@ -47,7 +52,6 @@ namespace Nayots.LaptopShop.Host
             {
                 endpoints.MapControllers();
             });
-
 
             serviceProvider.GetService<IDataBoostrap>().Setup();
         }

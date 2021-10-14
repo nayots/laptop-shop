@@ -1,9 +1,6 @@
-﻿using Nayots.LaptopShop.Common.Contracts.Products;
+﻿using Nayots.LaptopShop.Common.Constants;
+using Nayots.LaptopShop.Common.Contracts.Products;
 using Nayots.LaptopShop.Common.Models.Products;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Nayots.LaptopShop.BL.Services.Products
@@ -17,7 +14,21 @@ namespace Nayots.LaptopShop.BL.Services.Products
             _productsRepository = productsRepository;
         }
 
-        public ProductsResult GetAllProductsOfType(ProductType productType)
-            => new(productType, _productsRepository.GetAllOfType(productType));
+        public async Task<ProductsResult> GetAllProductsOfTypeAsync(ProductType productType)
+        {
+            var products = await _productsRepository.GetAllOfTypeAsync(productType);
+            return new(productType, products);
+        }
+
+        public async Task<ComponentsResult> GetAllComponentsAsync()
+        {
+            var components = await _productsRepository.GetAllOfTypesAsync(ShopConstants.ComponentsProductTypes);
+            return new(components);
+        }
+
+        public async Task<bool> DoesProductExistAsync(int productID)
+        {
+            return await _productsRepository.DoesProductExistAsync(productID);
+        }
     }
 }

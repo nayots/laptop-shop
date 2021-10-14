@@ -4,7 +4,11 @@ namespace Nayots.LaptopShop.Common.Models.Products
 {
     public record Product : IPricedProduct
     {
-        protected Product(int iD, string name, decimal price, ProductType productType)
+        public Product()
+        {
+
+        }
+        protected Product(int iD, string name, double price, ProductType productType)
         {
             ID = iD;
             Name = name;
@@ -14,7 +18,7 @@ namespace Nayots.LaptopShop.Common.Models.Products
 
         public int ID { get; init; }
         public string Name { get; init; }
-        public decimal Price { get; init; }
+        public double Price { get; init; }
         public ProductType ProductType { get; init; }
     }
 }

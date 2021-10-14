@@ -1,9 +1,8 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Nayots.LaptopShop.Common.Contracts.Auth;
+using Nayots.LaptopShop.Common.Contracts.Users;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -11,17 +10,18 @@ namespace Nayots.LaptopShop.BL.Services.Auth
 {
     public class JwtAuthManager : IJwtAuthManager
     {
-        private readonly IDictionary<string, string> _users = new Dictionary<string, string> { { "admin", "admin" } };
         private readonly string _key;
+        private readonly IUsersService _usersService;
 
-        public JwtAuthManager(string key)
+        public JwtAuthManager(string key, IUsersService usersService)
         {
             _key = key;
+            _usersService = usersService;
         }
 
         public string Authenticate(string username, string password)
         {
-            if (!_users.Any(x => x.Key.Equals(username, StringComparison.InvariantCultureIgnoreCase) && x.Value.Equals(password)))
+            if (!_usersService.TryGetUser(username, password, out var userInfo))
                 return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -30,7 +30,7 @@ namespace Nayots.LaptopShop.BL.Services.Auth
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, username)
+                    new Claim(ClaimTypes.Name, userInfo.Username)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials =

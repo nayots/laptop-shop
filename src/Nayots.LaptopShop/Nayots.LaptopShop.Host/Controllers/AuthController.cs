@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nayots.LaptopShop.Common.Contracts.Auth;
+using Nayots.LaptopShop.Common.Contracts.Users;
 using Nayots.LaptopShop.Common.Models.Auth;
+using System.Security.Claims;
 
 namespace Nayots.LaptopShop.Host.Controllers
 {
@@ -11,10 +13,12 @@ namespace Nayots.LaptopShop.Host.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IJwtAuthManager _jwtAuthManager;
+        private readonly IUsersService _usersService;
 
-        public AuthController(IJwtAuthManager jwtAuthManager)
+        public AuthController(IJwtAuthManager jwtAuthManager, IUsersService usersService)
         {
             _jwtAuthManager = jwtAuthManager;
+            _usersService = usersService;
         }
 
         [HttpPost()]
@@ -30,6 +34,9 @@ namespace Nayots.LaptopShop.Host.Controllers
         }
 
         [HttpGet]
-        public IActionResult Test() => Ok(new string[] { "something", "more" });
+        public IActionResult GetUser()
+        {
+            return Ok(_usersService.GetCurrentUser());
+        }
     }
 }

@@ -1,24 +1,21 @@
 ﻿using Dapper;
-using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Options;
 using Nayots.LaptopShop.Common.Contracts.Data;
-using Nayots.LaptopShop.Common.Models.Config;
 using System.IO;
 
 namespace Nayots.LaptopShop.Data.BootStrap
 {
     public class DataBootstrap : IDataBoostrap
     {
-        private readonly IOptionsMonitor<DbConfig> _dbOptions;
+        private readonly IConnectionProvider _connectionProvider;
 
-        public DataBootstrap(IOptionsMonitor<DbConfig> dbOptions)
+        public DataBootstrap(IConnectionProvider connectionProvider)
         {
-            _dbOptions = dbOptions;
+            _connectionProvider = connectionProvider;
         }
 
         public void Setup()
         {
-            using var connection = new SqliteConnection(_dbOptions.CurrentValue.Name);
+            var connection = _connectionProvider.GetConnection();
 
             var bootstrapSql = File.ReadAllText("BootstrapScript.sql");
             if (string.IsNullOrWhiteSpace(bootstrapSql))

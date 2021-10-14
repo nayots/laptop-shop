@@ -6,7 +6,7 @@ namespace Nayots.LaptopShop.Common.Contracts.Products
     {
         public int ID { get; init; }
         public string Name { get; init; }
-        public decimal Price { get; init; }
+        public double Price { get; init; }
 
         public ProductType ProductType { get; init; }
     }
