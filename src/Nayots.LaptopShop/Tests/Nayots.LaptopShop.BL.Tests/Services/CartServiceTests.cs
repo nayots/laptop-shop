@@ -88,9 +88,8 @@ namespace Nayots.LaptopShop.BL.Tests.Services
 
             _cartItems.Should().Contain(x => x.ProductID == productToRemove);
 
-            var userCart = await sut.RemoveItemFromCartAsync(1, productToRemove);
+            await sut.RemoveItemFromCartAsync(1, productToRemove);
 
-            userCart.Should().NotBeNull();
             _cartItems.Should().NotContain(x => x.ProductID == productToRemove);
         }
     }

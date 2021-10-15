@@ -39,12 +39,13 @@ namespace Nayots.LaptopShop.Host.Controllers
         }
 
         [HttpDelete()]
-        public async Task<ActionResult<UserCart>> DeleteFromCart(CartRemoval cartRemoval)
+        public async Task<IActionResult> DeleteFromCart(CartRemoval cartRemoval)
         {
             var user = _usersService.GetCurrentUser();
 
-            var cart = await _cartService.RemoveItemFromCartAsync(user.ID, cartRemoval.ProductID);
-            return Ok(cart);
+            await _cartService.RemoveItemFromCartAsync(user.ID, cartRemoval.ProductID);
+
+            return Accepted();
         }
     }
 }

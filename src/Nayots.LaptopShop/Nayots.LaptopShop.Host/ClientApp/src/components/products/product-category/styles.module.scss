@@ -1,0 +1,11 @@
+.categoryRoot {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryName {
+  font-size: 2em;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+}

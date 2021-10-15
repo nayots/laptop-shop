@@ -26,11 +26,9 @@ namespace Nayots.LaptopShop.BL.Services.Cart
             return new(cartItems);
         }
 
-        public async Task<UserCart> RemoveItemFromCartAsync(int userID, int productID)
+        public async Task RemoveItemFromCartAsync(int userID, int productID)
         {
             await _cartRespository.DeleteUserCartItemAsync(userID, productID);
-
-            return await GetUserCartAsync(userID);
         }
 
         public async Task<bool> UserHasProductTypeInCartAsync(int userID, int productID)

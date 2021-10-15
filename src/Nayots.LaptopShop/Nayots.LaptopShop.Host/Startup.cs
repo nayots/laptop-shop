@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,14 +23,18 @@ namespace Nayots.LaptopShop.Host
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
             services.AddJWTAuth(Configuration);
             services.AddServices();
-            services.AddControllers();
+            services.AddControllersWithViews();
             services.AddHttpContextAccessor();
             services.AddSwagger();
             services.AddDB(Configuration);
             services.AddValidators();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/build";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
@@ -42,7 +47,9 @@ namespace Nayots.LaptopShop.Host
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nayots.LaptopShop.Host v1"));
 
             app.UseHttpsRedirection();
-            app.UseCors();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -54,6 +61,17 @@ namespace Nayots.LaptopShop.Host
             });
 
             serviceProvider.GetService<IDataBoostrap>().Setup();
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
+
         }
     }
 }
