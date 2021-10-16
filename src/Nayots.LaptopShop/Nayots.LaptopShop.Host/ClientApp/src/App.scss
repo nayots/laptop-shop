@@ -1,0 +1,15 @@
+@import "~antd/dist/antd.css";
+
+body {
+  background-color: var(--colors-back);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  margin: 3vh 10vw auto 10vw;
+}

@@ -1,0 +1,26 @@
+@mixin shadowed($color) {
+  text-shadow: 0 0 0.2em $color;
+}
+
+.logo {
+  float: left;
+  font-size: 2em;
+  font-weight: 800;
+  color: white;
+  pointer-events: none;
+  @include shadowed(white);
+}
+
+.menu {
+  & > li:first-child {
+    margin-left: auto;
+  }
+}
+
+.swagger {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: green;
+  cursor: pointer;
+  @include shadowed(lime);
+}
