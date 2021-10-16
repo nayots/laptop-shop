@@ -82,7 +82,7 @@ export const CartButton: React.FC<ICartButtonProps> = (props): JSX.Element => {
           renderItem={(item) => (
             <List.Item key={item.productID}>
               <List.Item.Meta
-                avatar={<Avatar src={Images.cartTile} />}
+                avatar={<Avatar src={Images[item.productType]} />}
                 description={
                   <>
                     <span>{`${item.productName}, ${item.price.toFixed(
