@@ -9,3 +9,9 @@
   width: 100%;
   text-align: center;
 }
+
+.productsGrid {
+  display: grid;
+  gap: 0.4em;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+}

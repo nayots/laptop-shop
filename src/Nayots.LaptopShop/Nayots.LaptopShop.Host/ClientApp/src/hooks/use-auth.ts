@@ -52,6 +52,7 @@ export const useAuth = (): [
         password,
       });
       setToken(authResult.data);
+      localStorage.setItem(Token_Key, authResult.data);
       return true;
     } catch (error) {
       console.error(`Cannot login: ${username}`, error);

@@ -8,16 +8,17 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 import { ConfigurationConstants } from '../../../common/constants/configuration-constants';
 import { IShopContext, ShopContext } from '../../../context/shop-context';
+import { useLoadings } from '../../../hooks/use-loadings';
 import styles from './styles.module.scss';
 
 export interface ICartButtonProps {}
 
 export const CartButton: React.FC<ICartButtonProps> = (props): JSX.Element => {
-  const { DebounceTimes, Endpoints } = ConfigurationConstants;
+  const { DebounceTimes, Endpoints, Images } = ConfigurationConstants;
   const { userInfo, userIsLoggedIn, userCart, reloadCart } =
     useContext<IShopContext>(ShopContext);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [loadings, setLoadings] = useState<{ [key: number]: boolean }>({});
+  const [loadings, setLoading] = useLoadings();
 
   const closeModal = useCallback(() => {
     setShowModal(false);
@@ -35,19 +36,16 @@ export const CartButton: React.FC<ICartButtonProps> = (props): JSX.Element => {
   );
 
   const onRemoveFromCart = useCallback(
-    async (productId: number) => {
+    debounce(async (productId: number) => {
       try {
-        setLoadings((x) => {
-          return { ...x, [productId]: true };
-        });
+        setLoading(productId, true);
         await axios.delete(Endpoints.cart, { data: { productId } });
-        setLoadings((x) => {
-          return { ...x, [productId]: false };
-        });
+        setLoading(productId, false);
+
         refreshCart();
       } catch (error) {}
-    },
-    [Endpoints, setLoadings, refreshCart]
+    }, DebounceTimes.Normal),
+    [Endpoints, setLoading, refreshCart, DebounceTimes]
   );
 
   return (
@@ -82,11 +80,9 @@ export const CartButton: React.FC<ICartButtonProps> = (props): JSX.Element => {
           itemLayout="horizontal"
           dataSource={userCart?.cartItems || []}
           renderItem={(item) => (
-            <List.Item key={item.productId}>
+            <List.Item key={item.productID}>
               <List.Item.Meta
-                avatar={
-                  <Avatar src="https://res.cloudinary.com/fehbot/image/upload/v1634335563/laptop-shop/laptop.png" />
-                }
+                avatar={<Avatar src={Images.cartTile} />}
                 description={
                   <>
                     <span>{`${item.productName}, ${item.price.toFixed(
@@ -98,8 +94,8 @@ export const CartButton: React.FC<ICartButtonProps> = (props): JSX.Element => {
                       type="dashed"
                       danger
                       icon={<DeleteOutlined />}
-                      loading={loadings[item.productId]}
-                      onClick={() => onRemoveFromCart(item.productId)}
+                      loading={loadings[item.productID]}
+                      onClick={() => onRemoveFromCart(item.productID)}
                     />
                   </>
                 }

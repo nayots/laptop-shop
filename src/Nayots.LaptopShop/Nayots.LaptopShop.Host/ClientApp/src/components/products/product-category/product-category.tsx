@@ -7,6 +7,7 @@ import { ProductsResult } from '../../../common/models/product-result';
 import { ProductType } from '../../../common/models/product-type';
 import { State } from '../../../common/models/state';
 import { IShopContext, ShopContext } from '../../../context/shop-context';
+import { ProductTile } from '../product-tile/product-tile';
 import styles from './styles.module.scss';
 
 export interface IProductCategoryProps {
@@ -53,9 +54,9 @@ export const ProductCategory: React.FC<IProductCategoryProps> = ({
             {categoryProducts.productType}
           </div>
           <hr />
-          <div>
+          <div className={styles.productsGrid}>
             {categoryProducts.products.map((p) => (
-              <div key={p.iD}>{p.name}</div>
+              <ProductTile key={p.id} product={p} />
             ))}
           </div>
         </div>
