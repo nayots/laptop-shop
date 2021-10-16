@@ -1,11 +1,10 @@
 import { Button } from 'antd';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 
 import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 import { ProductType } from '../../../common/models/product-type';
 import { IShopContext, ShopContext } from '../../../context/shop-context';
-import styles from './styles.module.scss';
 
 export interface IPurchaseButtonProps {
   productId: number;

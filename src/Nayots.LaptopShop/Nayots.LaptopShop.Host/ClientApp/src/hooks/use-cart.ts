@@ -15,6 +15,8 @@ export const useCart = (
       if (userIsLoggedIn) {
         const cartResult = await axios.get<UserCart>(Endpoints.cart);
         setUserCart(cartResult.data);
+      } else {
+        setUserCart(undefined);
       }
     } catch (error) {
       console.error("Could not load user cart", error);

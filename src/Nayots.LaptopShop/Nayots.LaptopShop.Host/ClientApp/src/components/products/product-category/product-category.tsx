@@ -1,12 +1,11 @@
-import { Spin } from 'antd';
+import { notification, Spin } from 'antd';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ConfigurationConstants } from '../../../common/constants/configuration-constants';
 import { ProductsResult } from '../../../common/models/product-result';
 import { ProductType } from '../../../common/models/product-type';
 import { State } from '../../../common/models/state';
-import { IShopContext, ShopContext } from '../../../context/shop-context';
 import { ProductTile } from '../product-tile/product-tile';
 import styles from './styles.module.scss';
 
@@ -35,6 +34,10 @@ export const ProductCategory: React.FC<IProductCategoryProps> = ({
         setCategoryProducts(categoryItems.data);
         setDataState(State.Success);
       } catch (error) {
+        notification.open({
+          message: "Something went wrong",
+          description: `Could not load category ${productType}, try again. 🙇‍♂️`,
+        });
         setDataState(State.Failed);
       }
     };

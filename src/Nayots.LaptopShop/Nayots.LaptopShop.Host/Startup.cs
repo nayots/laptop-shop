@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Nayots.LaptopShop.Common.Contracts.Data;
 using Nayots.LaptopShop.Host.Extensions;
+using Serilog;
 using System;
 
 namespace Nayots.LaptopShop.Host
@@ -43,6 +44,7 @@ namespace Nayots.LaptopShop.Host
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSerilogRequestLogging();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nayots.LaptopShop.Host v1"));
 
