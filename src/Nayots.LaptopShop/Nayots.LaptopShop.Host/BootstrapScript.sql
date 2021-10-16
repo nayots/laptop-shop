@@ -12,6 +12,7 @@ VALUES
     ('HP', 456.76,1),
     ('Lenovo', 1000,1),
     ('MacBook Pro', 1500,1),
+    ('MacBook Air', 1300,1),
     ('Corsair 8GB', 45.67,2),
     ('Corsair 16GB(2x8GB)', 87.88,2),
     ('Seagate 500GB HDD', 123.34,3),

@@ -43,10 +43,9 @@ namespace Nayots.LaptopShop.BL.Tests.Services
         {
             var sut = new CartService(_cartRespository);
 
-            var userCart = await sut.AddItemToCartAsync(1, productID);
+            await sut.AddItemToCartAsync(1, productID);
 
-            userCart.Should().NotBeNull();
-            userCart.CartItems.Should().Contain(x => x.ProductID.Equals(productID));
+            _cartItems.Should().Contain(x => x.ProductID.Equals(productID));
         }
 
         [Theory]

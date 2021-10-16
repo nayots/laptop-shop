@@ -33,9 +33,9 @@ namespace Nayots.LaptopShop.Host.Controllers
         public async Task<ActionResult<UserCart>> AddItemToCart(CartAddition cartAddition)
         {
             var user = _usersService.GetCurrentUser();
+            await _cartService.AddItemToCartAsync(user.ID, cartAddition.ProductID);
 
-            var cart = await _cartService.AddItemToCartAsync(user.ID, cartAddition.ProductID);
-            return Ok(cart);
+            return Ok();
         }
 
         [HttpDelete()]

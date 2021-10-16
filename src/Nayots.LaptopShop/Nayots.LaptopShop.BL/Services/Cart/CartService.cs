@@ -13,10 +13,9 @@ namespace Nayots.LaptopShop.BL.Services.Cart
             _cartRespository = cartRespository;
         }
 
-        public async Task<UserCart> AddItemToCartAsync(int userID, int productID)
+        public async Task AddItemToCartAsync(int userID, int productID)
         {
             await _cartRespository.InsertItemInCartAsync(userID, productID);
-            return await GetUserCartAsync(userID);
         }
 
         public async Task<UserCart> GetUserCartAsync(int userID)
